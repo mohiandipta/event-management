@@ -1,6 +1,6 @@
 const mysql = require('mysql')
 
-const con = mysql.createConnection({
+const dbcon = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: "",
@@ -8,10 +8,11 @@ const con = mysql.createConnection({
   connectionLimit: 10,
 });
 
-con.connect((err)=>{
+dbcon.connect((err)=>{
     if (err) {
         console.warn("erron in db connection")
     }
+    console.log('Database connected')
 })
 
-module.exports = con
+module.exports = dbcon

@@ -1,12 +1,13 @@
 const express = require("express");
 const app = express();
-const con = require('./src/database/Database')
+const dbcon = require('./database/Database')
+require('dotenv/config')
 
-const api = "/api/v1";
+const api = process.env.API_URL;
 
-app.get("/events", (req, res) => {
+app.get(api + "/events", (req, res) => {
   try {
-    con.query("select * from events", (err, result) => {
+    dbcon.query("select * from events", (err, result) => {
       if (err) {
         res.send("error in api")
       }
@@ -16,6 +17,15 @@ app.get("/events", (req, res) => {
     console.log(error)
   }
 });
+
+
+// Main Routes
+const EventsRoutes = require('./src/routes/events.routes')
+
+//API URL's
+app.use(api, EventsRoutes)
+
+
 
 app.listen(3000, () => {
   console.log("Server is running  at http://localhost:3000");
