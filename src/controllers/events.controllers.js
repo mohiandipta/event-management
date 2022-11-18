@@ -1,7 +1,13 @@
+const express = require('express')
+const {req, res, next} = express()
 
 // All Events
-const AllEvents = async () => {
-    console.log('This is all events controllers')
+const AllEvents = async (req, res, next) => {
+    try {
+      
+    } catch (err) {
+      console.error(err.message)
+    }
 }
 
 
