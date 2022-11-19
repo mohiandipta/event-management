@@ -1,29 +1,42 @@
-const express = require('express')
-const {req, res, next} = express()
+const eventService = require("../services/event.service");
+const paginateHelper = require("../helper/pagination.helper");
 
 // All Events
-const AllEvents = async (req, res, next) => {
-    try {
-      
-    } catch (err) {
-      console.error(err.message)
-    }
-}
-
-
-// Active Events
-const ActiveEvents = async () => {
-  console.log("This is all events controllers");
+const index = async (req, res, next) => {
+  try {
+    const { page, limit } = req.query;
+    const totalCount = await eventService.countAll();
+    const items = await eventService.findAll({page, limit});
+   
+    res.status(200).json({
+      data: items,
+      paginate: paginateHelper.paginate({
+        page,
+        limit,
+        total_items: totalCount,
+      }),
+    });
+  } catch (err) {
+    console.error(err.message);
+    next(err);
+  }
 };
 
-
 // Events Details by id
-const EventsDetails = async () => {
-  console.log("This is events details controllers");
+const show = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const result = await eventService.findOneById(id);
+    res.status(200).json({
+      data: result || null
+    })
+  } catch (error) {
+    console.log(error);
+    next(error)
+  }
 };
 
 module.exports = {
-  AllEvents,
-  ActiveEvents,
-  EventsDetails,
+  index,
+  show,
 };

@@ -1,29 +1,15 @@
 const express = require("express");
-const app = express();
-const dbcon = require('./database/Database')
 require('dotenv/config')
-
+const bodyParser = require('body-parser')
+const { router } = require("./src/routes")
+const app = express();
 const api = process.env.API_URL;
 
-app.get(api + "/events", (req, res) => {
-  try {
-    dbcon.query("select * from events", (err, result) => {
-      if (err) {
-        res.send("error in api")
-      }
-      return res.send(result)
-    })
-  } catch (error) {
-    console.log(error)
-  }
-});
-
-
-// Main Routes
-const EventsRoutes = require('./src/routes/events.routes')
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 //API URL's
-app.use(api, EventsRoutes)
+app.use(api, router);
 
 
 

@@ -1,11 +1,9 @@
 const express = require('express')
-const { AllEvents } = require('../controllers/events.controllers')
-const router = express.Router()
+const eventRouters = express.Router()
+const eventControllers = require('../controllers/events.controllers')
 
-const EventControllers = require('../controllers/events.controllers')
-
-router.get('/all-events', EventControllers.AllEvents)
-router.get('/active-events', EventControllers.ActiveEvents)
+eventRouters.get('/', eventControllers.index)
+eventRouters.get('/:id', eventControllers.show)
 
 
-module.exports = router
+module.exports = {eventRouters};
