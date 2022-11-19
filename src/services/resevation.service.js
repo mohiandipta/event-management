@@ -1,9 +1,9 @@
-const con = require("../config/db.config");
+const conn = require("../config/db.config");
 
 // Create Reservations
-const PostReservation = async (name, email, workshop_id) => {
+const create = async (name, email, workshop_id) => {
     const sql = `INSERT INTO reservations (name, email, workshop_id) VALUES ('${name}', '${email}', '${workshop_id}')`;
-    con.query(sql, (err, result) => {
+    conn.query(sql, (err) => {
       if (err) {
         return null
       }
@@ -13,5 +13,5 @@ const PostReservation = async (name, email, workshop_id) => {
 
 
 module.exports = {
-  PostReservation,
+  create,
 };

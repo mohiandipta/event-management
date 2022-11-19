@@ -1,3 +1,4 @@
+const { json } = require("body-parser");
 const util = require("util");
 const conn = require("../config/db.config");
 
@@ -17,12 +18,27 @@ const findAll = async ({ page, limit }) => {
 
 // Events find by id
 const findOneById = async (id) => {
-  const result = await query(`select * from events where id=${id}`);
-  return JSON.parse(JSON.stringify(result))[0];
+  const item = await query(`select * from events where id=${id}`);
+  const totalWorkshop = await query(`SELECT COUNT(id) AS total_workshops FROM reservations WHERE workshop_id=${id}`);
+  let total_workshops = JSON.stringify(totalWorkshop[0].total_workshops);
+  newitem = { ...item[0], total_workshops };
+  return newitem;
 };
+
+// Create Event
+const create = async(title, start_at, end_at) => {
+    const sql = `INSERT INTO events (title, start_at, end_at) VALUES ('${title}','${start_at}','${end_at}')`
+    conn.query(sql, (err, result) => {
+      if (err) {
+        return null
+      }
+      return true
+    })
+}
 
 module.exports = {
   countAll,
   findAll,
   findOneById,
+  create
 };
