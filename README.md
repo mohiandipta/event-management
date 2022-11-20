@@ -174,8 +174,9 @@ Response:
 #
 #
 #
-##
-# Additional API End Point for `events` and `workshops` create.
+#
+#
+# (Development Purpose) Additional API End Point for `events` and `workshops` create.
 ## events
 `POST Method`
 ```
