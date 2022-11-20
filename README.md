@@ -7,7 +7,7 @@
 ### 3. Run `npm start`
 ## ~ Server will be started ~
 ### 4. Get Sql file from `root` folder of project
-### 5. Emport Sql
+### 5. Import Sql
 ## ~ Database will be ready ~
 #
 
