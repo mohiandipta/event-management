@@ -11,7 +11,7 @@ const findAll = async (id) => {
     return newItem
 }
 
-// workshops find by id
+// workshops details
 const findOneById = async (id) => {
     const item = await query(`select * from workshops where id=${id}`);
     const totalReservation = await query(
@@ -24,7 +24,7 @@ const findOneById = async (id) => {
     return newItem
 }
 
-// Create Event
+// Create workshop
 const create = async(event_id, start_at, end_at, title, description) => {
     const sql = `INSERT INTO workshops (event_id, start_at, end_at, title, description) VALUES ('${event_id}','${start_at}','${end_at}', '${title}','${description}')`;
     conn.query(sql, (err) => {

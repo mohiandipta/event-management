@@ -1,3 +1,4 @@
+const { json } = require("body-parser");
 const mysql = require("mysql");
 
 const dbcon = mysql.createConnection({
@@ -12,7 +13,9 @@ dbcon.connect((err) => {
   if (err) {
     console.warn("erron in db connection");
   }
-  console.log("db connected!");
+  else {
+    console.log('db connected!')
+  }
 });
 
 module.exports = dbcon;

@@ -1,4 +1,3 @@
-const { json } = require("body-parser");
 const util = require("util");
 const conn = require("../config/db.config");
 
@@ -11,12 +10,12 @@ const countAll = async () => {
 };
 
 // find all Events
-const findAll = async ({ page, limit }) => {
+const findAll = async () => {
   const results = await query("select * from events");
   return JSON.parse(JSON.stringify(results));
 };
 
-// Events find by id
+// events Details
 const findOneById = async (id) => {
   const item = await query(`select * from events where id=${id}`);
   const totalWorkshop = await query(`SELECT COUNT(id) AS total_workshops FROM reservations WHERE workshop_id=${id}`);
