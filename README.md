@@ -5,8 +5,10 @@
 ### 1. Clone this repo with `Git Clone` and url.
 ### 2. Run `npm i`
 ### 3. Run `npm start`
-
 ## ~ Server will be started ~
+### 4. Get Sql file from `root` folder of project
+### 3. Emport Sql
+## ~ Database will be ready ~
 #
 
 ## API endpoints:
