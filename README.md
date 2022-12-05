@@ -7,7 +7,7 @@
 ### 3. Run `npm start`
 ## ~ Server will be started ~
 ### 4. Get Sql file from `root` folder of project
-### 5. Import Sql
+### 5. Import/Restore Sql file into xampp and run MySql
 ## ~ Database will be ready ~
 #
 
