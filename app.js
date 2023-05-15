@@ -10,7 +10,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 //API URL's
 app.use(api, router);
-
+app.use('/', (req, res)=>{
+  res.send("API SERVER IS RUNNING")
+})
 
 
 app.listen(3000, () => {
